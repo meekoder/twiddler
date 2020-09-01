@@ -16,22 +16,22 @@
     <script>
 
       $(document).ready(function(){
-        var $body = $('body');
+        var $body = $('body'); // not in use currently
         let $main = $('#main');
         let index = streams.home.length - 1;
         console.log(streams)
         while(index >= 0){
-          let $article = $('<article class="media" id="twiddles"></article>');
+          let $article = $('<article class="media" id="twiddles" />');
           let twiddleObj = streams.home[index];
           let username = twiddleObj.user;
           let twiddle = twiddleObj.message;
           let dateCreated = twiddleObj.created_at;
-          let $userMedia = $('<div class="media-content"></div>');
-          let $tweet = $('<div class="content"></div>');
-          let $user = $('<p></p>');
-          let $image = $('<img>');
-          let $profilePic = $('<figure class="media-left"></figure>');
-          let $profileSize = $('<p class="image is-64x64"></p>');
+          let $userMedia = $('<div class="media-content" />');
+          let $tweet = $('<div class="content" />');
+          let $user = $('<p />');
+          let $image = $('<img />');
+          let $profilePic = $('<figure class="media-left" />');
+          let $profileSize = $('<p class="image is-64x64" />');
           let $interaction = $(`<nav class="level is-mobile">
           <div class="level-left">
             <a class="level-item">
@@ -48,7 +48,7 @@
           $image.attr("src", `${username}.png`)
             .appendTo($profileSize)
           $profilePic.append($profileSize);
-          $tweet.append('<p></p>')
+          $tweet.append('<p />')
             .text(`${twiddle}`)
           $user.text(`@${username} ${dateCreated}`)
             .css('font-weight', 'bold')
@@ -58,9 +58,6 @@
             .appendTo($main);
           index -= 1;
         }
-          <!-- const image = () => { -->
-              <!-- }; -->
-          let $twiddles = $('#twiddles');
       });
 
     </script>
