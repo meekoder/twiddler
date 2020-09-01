@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Twiddler</title>
-    <link rel="icon" href="twitter-icon.ico" type="image/x-icon">
-    <link href="styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="https://kit.fontawesome.com/e6c8d04d12.js" crossorigin="anonymous"></script>
-    <script src="jquery.js"></script>
-    <script src="dataGenerator.js"></script>
+    <link rel='icon' href='twitter-icon.ico' type='image/x-icon'>
+    <link href='styles.css' rel='stylesheet'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css'>
+    <script defer src='https://use.fontawesome.com/releases/v5.3.1/js/all.js'></script>
+    <script src='https://kit.fontawesome.com/e6c8d04d12.js' crossorigin='anonymous'></script>
+    <script src='jquery.js'></script>
+    <script src='dataGenerator.js'></script>
   </head>
   <body>
     <script>
@@ -32,20 +32,20 @@
           let $image = $('<img />');
           let $profilePic = $('<figure class="media-left" />');
           let $profileSize = $('<p class="image is-64x64" />');
-          let $interaction = $(`<nav class="level is-mobile">
-          <div class="level-left">
-            <a class="level-item">
-              <span class="icon is-small"><i class="fas fa-reply"></i></span>
+          let $interaction = $(`<nav class='level is-mobile'>
+          <div class='level-left'>
+            <a class='level-item'>
+              <span class='icon is-small'><i class='fas fa-reply'></i></span>
             </a>
-            <a class="level-item">
-              <span class="icon is-small"><i class="fas fa-retweet"></i></span>
+            <a class='level-item'>
+              <span class='icon is-small'><i class='fas fa-retweet'></i></span>
             </a>
-            <a class="level-item">
-              <span class="icon is-small"><i class="fas fa-heart"></i></span>
+            <a class='level-item'>
+              <span class='icon is-small'><i class='fas fa-heart'></i></span>
             </a>
           </div>
         </nav>`);
-          $image.attr("src", `${username}.png`)
+          $image.attr('src', `${username}.png`)
             .appendTo($profileSize)
           $profilePic.append($profileSize);
           $tweet.append('<p />')
@@ -61,62 +61,62 @@
       });
 
     </script>
-    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item">
-          <img src="twitter-icon.ico">
+    <nav class='navbar is-light' role='navigation' aria-label='main navigation'>
+      <div class='navbar-brand'>
+        <a class='navbar-item'>
+          <img src='twitter-icon.ico'>
         </a>
 
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
+        <a role='button' class='navbar-burger burger' aria-label='menu' aria-expanded='false'>
+          <span aria-hidden='true'></span>
+          <span aria-hidden='true'></span>
+          <span aria-hidden='true'></span>
         </a>
       </div>
-      <div class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item">
+      <div class='navbar-menu'>
+        <div class='navbar-start'>
+          <a class='navbar-item'>
             Home
           </a>
         </div>
-        <div class="field">
-          <p class="control has-icons-right">
-            <input class="input" type="search" placeholder="Search Twiddler">
-            <span class="icon is-small is-right">
-              <i class="fas fa-search"></i>
+        <div class='field'>
+          <p class='control has-icons-right'>
+            <input class='input' type='search' placeholder='Search Twiddler'>
+            <span class='icon is-small is-right'>
+              <i class='fas fa-search'></i>
             </span>
           </p>
         </div>
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button">
-                <span class="icon">
-                  <i class="fab fa-twitter"></i>
+        <div class='navbar-end'>
+          <div class='navbar-item'>
+            <div class='buttons'>
+              <a class='button'>
+                <span class='icon'>
+                  <i class='fab fa-twitter'></i>
                 </span>
                 <span>
                   Tweet
                 </span>
               </a>
-              <a class="button is-link">
+              <a class='button is-link'>
                 Log in
               </a>
             </div>
           </div>
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
+          <div class='navbar-item has-dropdown is-hoverable'>
+            <a class='navbar-link'>
               More
             </a>
 
-            <div class="navbar-dropdown">
-              <a class="navbar-item">
+            <div class='navbar-dropdown'>
+              <a class='navbar-item'>
                 Settings
               </a>
-              <a class="navbar-item">
+              <a class='navbar-item'>
                 Likes
               </a>
-              <hr class="navbar-divider">
-              <a class="navbar-item">
+              <hr class='navbar-divider'>
+              <a class='navbar-item'>
                 About
               </a>
             </div>
@@ -124,41 +124,41 @@
         </div>
       </div>
     </nav>
-    <div class="columns">
-      <div class="column is-narrow">
-        <div class="box" style="width: 300px;">
-          <p class="title is-5">Profile</p>
-          <p class="subtitle">Meeko</p>
+    <div class='columns'>
+      <div class='column is-narrow'>
+        <div class='box' style='width: 300px;'>
+          <p class='title is-5'>Profile</p>
+          <p class='subtitle'>Meeko</p>
         </div>
       </div>
-      <div class="column is-two-thirds" id="main">
-        <div class="box">
-          <article class="media">
-            <figure class="media-left">
-              <p class="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/128x128.png">
+      <div class='column is-two-thirds' id='main'>
+        <div class='box'>
+          <article class='media'>
+            <figure class='media-left'>
+              <p class='image is-64x64'>
+                <img src='https://bulma.io/images/placeholders/128x128.png'>
               </p>
             </figure>
-            <div class="media-content">
-              <div class="field">
-                <p class="control">
-                  <textarea class="textarea" placeholder="What's happening?"></textarea>
+            <div class='media-content'>
+              <div class='field'>
+                <p class='control'>
+                  <textarea class='textarea' placeholder='What's happening?'></textarea>
                 </p>
               </div>
-              <nav class="level">
-                <div class="level-right">
-                  <div class="level-item">
-                    <a class="button is-info">Twiddle</a>
+              <nav class='level'>
+                <div class='level-right'>
+                  <div class='level-item'>
+                    <a class='button is-info'>Twiddle</a>
                   </div>
                 </div>
               </nav>
             </div>
           </article>
         </div>
-        <!-- <article class="media" id="media-obj"> -->
-        <!-- <figure class="media-left"> -->
-        <!--   <p class="image is-64x64"> -->
-        <!--     <img src="https://bulma.io/images/placeholders/128x128.png"> -->
+        <!-- <article class='media' id='media-obj'> -->
+        <!-- <figure class='media-left'> -->
+        <!--   <p class='image is-64x64'> -->
+        <!--     <img src='https://bulma.io/images/placeholders/128x128.png'> -->
         <!--   </p> -->
         <!-- </figure> -->
         <!-- </article> -->
