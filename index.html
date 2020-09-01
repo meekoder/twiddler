@@ -30,7 +30,8 @@
           let $tweet = $('<div class="content"></div>');
           let $user = $('<p></p>');
           let $image = $('<img>');
-          let $profilePic = $('<figure class="media-left"><p class="image is-64x64" id="pro-pic"></p></figure>');
+          let $profilePic = $('<figure class="media-left"></figure>');
+          let $profileSize = $('<p class="image is-64x64"></p>');
           let $interaction = $(`<nav class="level is-mobile">
           <div class="level-left">
             <a class="level-item">
@@ -45,7 +46,8 @@
           </div>
         </nav>`);
           $image.attr("src", `${username}.png`)
-            .appendTo("#pro-pic");
+            .appendTo($profileSize)
+          $profilePic.append($profileSize);
           $tweet.append('<p></p>')
             .text(`${twiddle}`)
           $user.text(`@${username} ${dateCreated}`)
