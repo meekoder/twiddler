@@ -11,83 +11,9 @@
     <script src='https://kit.fontawesome.com/e6c8d04d12.js' crossorigin='anonymous'></script>
     <script src='jquery.js'></script>
     <script src='dataGenerator.js'></script>
+    <script src='main.js'></script>
   </head>
   <body>
-    <script>
-      
-      $(document).ready(function(){
-        var $body = $('body'); // not in use currently
-        let $main = $('#main');
-        let index = streams.home.length - 1;
-        console.log(users)
-        console.log(streams)
-        while(index >= 0){
-          let $article = $('<article class="media" />');
-          let twiddleObj = streams.home[index];
-          let username = twiddleObj.user;
-          let twiddle = twiddleObj.message;
-          let dateCreated = twiddleObj.created_at;
-          let $userMedia = $('<div class="media-content" />');
-          let $tweet = $('<div class="content" />');
-          let $user = $('<p />');
-          let $image = $('<img />');
-          let $profilePic = $('<figure class="media-left" />');
-          let $profileSize = $('<p class="image is-64x64" />');
-          let $interaction = $(`<nav class='level is-mobile'>
-          <div class='level-left'>
-            <a class='level-item'>
-              <span class='icon is-small'><i class='fas fa-reply'></i></span>
-            </a>
-            <a class='level-item'>
-              <span class='icon is-small'><i class='fas fa-retweet'></i></span>
-            </a>
-            <a class='level-item'>
-              <span class='icon is-small'><i class='fas fa-heart'></i></span>
-            </a>
-          </div>
-        </nav>`);
-          $image.attr('src', `./assets/${username}.png`)
-            .appendTo($profileSize)
-          $profilePic.append($profileSize);
-          $tweet.append('<p />')
-            .text(`${twiddle}`)
-          $user.text(`@${username} ${dateCreated}`)
-            .css('font-weight', 'bold')
-            .prependTo($tweet);
-          $userMedia.append($tweet, $interaction);
-          $article.append($profilePic, $userMedia)
-            .appendTo($main);
-          index -= 1;
-        }
-
-        let callCount = 0;
-        const originalAddTweet = addTweet;
-
-        addTweet = function(...arguments) {
-          callCount += 1;
-          if (callCount === 1) {
-            $('#new-twiddle-card').after('<button class="button is-info is-rounded" id="new-twiddles"/>');
-          }
-          newTweetTrigger(...arguments);
-          return originalAddTweet(...arguments);
-        }
-
-        const newTweetTrigger = () => {
-          $('#new-twiddles').text(`${callCount} New Twiddles!`);
-          console.log('add tweet called')
-        };
-
-        <!-- const handleLoadNewTwiddles = () => { -->
-
-        <!-- }; -->
-        <!-- $('#new-twiddles').click(handleLoadNewTwiddles); -->
-          <!-- const handleNewTwiddle = () => { -->
-              <!--   $('#twiddle').val() -->
-              <!-- } -->
-          <!-- $('#twiddle').click(handleNewTwiddle); -->
-      });
-
-    </script>
     <nav class='navbar is-light' role='navigation' aria-label='main navigation'>
       <div class='navbar-brand'>
         <a class='navbar-item'>
@@ -158,7 +84,7 @@
           <p class='subtitle'>Meeko</p>
         </div>
       </div>
-      <div class='column is-two-thirds' id='main'>
+      <div class='column is-two-thirds'>
         <div class='box' id='new-twiddle-card'>
           <article class='media'>
             <figure class='media-left'>
@@ -181,6 +107,8 @@
               </nav>
             </div>
           </article>
+        </div>
+        <div id='main'>
         </div>
       </div>
     </div>
