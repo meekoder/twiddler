@@ -14,14 +14,15 @@
   </head>
   <body>
     <script>
-
+      
       $(document).ready(function(){
         var $body = $('body'); // not in use currently
         let $main = $('#main');
         let index = streams.home.length - 1;
+        console.log(users)
         console.log(streams)
         while(index >= 0){
-          let $article = $('<article class="media" id="twiddles" />');
+          let $article = $('<article class="media" />');
           let twiddleObj = streams.home[index];
           let username = twiddleObj.user;
           let twiddle = twiddleObj.message;
@@ -58,13 +59,39 @@
             .appendTo($main);
           index -= 1;
         }
+
+        let callCount = 0;
+        const originalAddTweet = addTweet;
+
+        addTweet = function(...arguments) {
+          callCount += 1;
+          if (callCount === 1) {
+            $('#new-twiddle-card').after('<button class="button is-info is-rounded" id="new-twiddles"/>');
+          }
+          newTweetTrigger(...arguments);
+          return originalAddTweet(...arguments);
+        }
+
+        const newTweetTrigger = () => {
+          $('#new-twiddles').text(`${callCount} New Twiddles!`);
+          console.log('add tweet called')
+        };
+
+        <!-- const handleLoadNewTwiddles = () => { -->
+
+        <!-- }; -->
+        <!-- $('#new-twiddles').click(handleLoadNewTwiddles); -->
+          <!-- const handleNewTwiddle = () => { -->
+              <!--   $('#twiddle').val() -->
+              <!-- } -->
+          <!-- $('#twiddle').click(handleNewTwiddle); -->
       });
 
     </script>
     <nav class='navbar is-light' role='navigation' aria-label='main navigation'>
       <div class='navbar-brand'>
         <a class='navbar-item'>
-          <img src='twitter-icon.ico'>
+          <img src='./assets/twitter-icon.ico'>
         </a>
 
         <a role='button' class='navbar-burger burger' aria-label='menu' aria-expanded='false'>
@@ -132,7 +159,7 @@
         </div>
       </div>
       <div class='column is-two-thirds' id='main'>
-        <div class='box'>
+        <div class='box' id='new-twiddle-card'>
           <article class='media'>
             <figure class='media-left'>
               <p class='image is-64x64'>
@@ -142,26 +169,19 @@
             <div class='media-content'>
               <div class='field'>
                 <p class='control'>
-                  <textarea class='textarea' placeholder='What's happening?'></textarea>
+                  <textarea class='textarea' placeholder="What's happening?"></textarea>
                 </p>
               </div>
               <nav class='level'>
                 <div class='level-right'>
                   <div class='level-item'>
-                    <a class='button is-info'>Twiddle</a>
+                    <a class='button is-info' id='twiddle'>Twiddle</a>
                   </div>
                 </div>
               </nav>
             </div>
           </article>
         </div>
-        <!-- <article class='media' id='media-obj'> -->
-        <!-- <figure class='media-left'> -->
-        <!--   <p class='image is-64x64'> -->
-        <!--     <img src='https://bulma.io/images/placeholders/128x128.png'> -->
-        <!--   </p> -->
-        <!-- </figure> -->
-        <!-- </article> -->
       </div>
     </div>
   </body>
