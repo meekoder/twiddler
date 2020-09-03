@@ -1,4 +1,3 @@
-
 const formatDate = (dateObj) => {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   let hours = dateObj.getHours();
@@ -102,7 +101,7 @@ $(document).ready(function() {
   addHandleClickProp();
   streams.home.forEach(x => displayHomeFeed(x));
 
-  $('#twitter-icon').click(function() {
+  $('#twitter-icon, #home').click(function() {
     addHandleClickProp();
     callCount = 0;
     $('#new-twiddles').remove();
