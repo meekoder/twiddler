@@ -31,18 +31,16 @@ const displayHomeFeed = (twiddleObj) => {
   const $image = $('<img />');
   const $profilePic = $('<figure class="media-left" />');
   const $profileSize = $('<p class="image is-64x64" />');
+  const $date = $('<div class="level-right" />');
   const $interaction = $(`<nav class='level is-mobile'>
           <div class='level-left'>
-            <a class='level-item'>
-              <span class='icon is-small'><i class='fas fa-retweet'></i></span>
-            </a>
             <a class='level-item'>
               <span class='icon is-small'><i class='fas fa-heart'></i></span>
             </a>
           </div>
-          <div class='level-right' id='date'>
-          </div>
         </nav>`);
+  $date.text(`${dateCreated}`)
+    .appendTo($interaction);
   $image.attr('src', `./assets/${username}.png`)
     .appendTo($profileSize);
   $image.click(twiddleObj.handleProfileClick);
@@ -50,7 +48,7 @@ const displayHomeFeed = (twiddleObj) => {
   $profilePic.append($profileSize);
   $tweet.append('<p />')
     .text(`${twiddle}`)
-  $user.text(`@${username} ${dateCreated}`)
+  $user.text(`@${username}`)
     .css('font-weight', 'bold')
     .prependTo($tweet);
   $userMedia.append($tweet, $interaction);
