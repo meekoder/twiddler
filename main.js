@@ -42,14 +42,17 @@ const displayHomeFeed = (twiddleObj) => {
   $date.text(`${dateCreated}`)
     .appendTo($interaction);
   $image.attr('src', `./assets/${username}.png`)
-    .appendTo($profileSize);
-  $image.click(twiddleObj.handleProfileClick);
+    .css('cursor', 'pointer')
+    .appendTo($profileSize)
+    .click(twiddleObj.handleProfileClick);
   $user.click(twiddleObj.handleProfileClick);
   $profilePic.append($profileSize);
   $tweet.append('<p />')
     .text(`${twiddle}`)
   $user.text(`@${username}`)
-    .css('font-weight', 'bold')
+    .css({'font-weight': 'bold',
+          'cursor': 'pointer'
+    })
     .prependTo($tweet);
   $userMedia.append($tweet, $interaction);
   $article.append($profilePic, $userMedia)
