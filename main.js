@@ -1,7 +1,7 @@
 const formatDate = (dateObj) => {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   let hours = dateObj.getHours();
-  const mins = dateObj.getMinutes();
+  let mins = dateObj.getMinutes();
   const month = months[dateObj.getMonth()];
   const day = dateObj.getDate();
   const year = dateObj.getFullYear();
@@ -12,25 +12,26 @@ const formatDate = (dateObj) => {
   if (hours > 12 || hours === 0) {
     hours = Math.abs(hours - 12);
   }
+  mins = ('0' + mins).slice(-2);
   const time = `${hours}:${mins} ${amOrPm}`;
   const date = `${month} ${day}, ${year}`;
-  const formattedDate = `${date} \xB7 ${time}`;
+  const formattedDate = `${time} \xB7 ${date}`;
   return formattedDate;
 };
 
-const twiddleMedia = (twiddleObj) => {
-  let $main = $('#main');
-  let $article = $('<article class="media" id="#a-twiddle"/>');
-  let username = twiddleObj.user;
-  let twiddle = twiddleObj.message;
-  let dateCreated = formatDate(twiddleObj.created_at);
-  let $userMedia = $('<div class="media-content" />');
-  let $tweet = $('<div class="content" />');
-  let $user = $('<p />');
-  let $image = $('<img />');
-  let $profilePic = $('<figure class="media-left" />');
-  let $profileSize = $('<p class="image is-64x64" />');
-  let $interaction = $(`<nav class='level is-mobile'>
+const displayHomeFeed = (twiddleObj) => {
+  const $main = $('#main');
+  const $article = $('<article class="media" id="#a-twiddle"/>');
+  const username = twiddleObj.user;
+  const twiddle = twiddleObj.message;
+  const dateCreated = formatDate(twiddleObj.created_at);
+  const $userMedia = $('<div class="media-content" />');
+  const $tweet = $('<div class="content" />');
+  const $user = $('<p />');
+  const $image = $('<img />');
+  const $profilePic = $('<figure class="media-left" />');
+  const $profileSize = $('<p class="image is-64x64" />');
+  const $interaction = $(`<nav class='level is-mobile'>
           <div class='level-left'>
             <a class='level-item'>
               <span class='icon is-small'><i class='fas fa-reply'></i></span>
@@ -42,9 +43,15 @@ const twiddleMedia = (twiddleObj) => {
               <span class='icon is-small'><i class='fas fa-heart'></i></span>
             </a>
           </div>
+          <div class='level-right' id='date'>
+          </div>
         </nav>`);
+  // const $date = $('<p class="level-item" />');
+  // $date.text(`${dateCreated}`)
+  //   .appendTo('#date');
   $image.attr('src', `./assets/${username}.png`)
-    .appendTo($profileSize)
+    .appendTo($profileSize);
+  $image.click(twiddleObj.handleProfileClick);
   $profilePic.append($profileSize);
   $tweet.append('<p />')
     .text(`${twiddle}`)
@@ -56,8 +63,18 @@ const twiddleMedia = (twiddleObj) => {
     .prependTo($main);
 };
 
+streams.home.map(obj => {
+  obj.handleProfileClick = () => {
+    const userTwiddles = streams.users[obj.user];
+    $('#new-twiddles').remove();
+    $('#main').empty();
+    userTwiddles.forEach(x => displayHomeFeed(x));
+  }
+  return obj;
+});
 $(document).ready(function(){
-  streams.home.forEach(x => twiddleMedia(x));
+  streams.home.forEach(x => displayHomeFeed(x));
+  console.log(streams)
   let callCount = 0;
   const originalAddTweet = addTweet;
 
@@ -80,7 +97,7 @@ $(document).ready(function(){
     const newTwiddlesArr = streams.home.slice(newTwiddlesLength);
     callCount = 0;
     $('#new-twiddles').remove();
-    newTwiddlesArr.forEach(x => twiddleMedia(x));
+    newTwiddlesArr.forEach(x => displayHomeFeed(x));
   };
 });
 
