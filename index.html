@@ -33,7 +33,7 @@
             Home
           </a>
         </div>
-        <div class='field'>
+        <div class='field' id='search'>
           <p class='control has-icons-right'>
             <input class='input' type='search' placeholder='Search Twiddler'>
             <span class='icon is-small is-right'>
@@ -51,9 +51,6 @@
                 <span>
                   Twiddle
                 </span>
-              </a>
-              <a class='button is-link'>
-                Log in
               </a>
             </div>
           </div>
@@ -80,38 +77,40 @@
     </nav>
     <div class='columns is-mobile'>
       <div class='column is-three-fifths is-offset-one-fifth'>
-        <div class='box' id='new-twiddle-card'>
-          <article class='media'>
-            <figure class='media-left'>
-              <p class='image is-64x64'>
-                <img src='./assets/default.png'>
-              </p>
-            </figure>
-            <div class='media-content'>
-              <div class='field'>
-                <div class='control has-icons-left'>
-                  <input class='input' type='text' placeholder='Username' id='username'>
-                  <span class='icon is-small is-left'>
-                    <i class='fas fa-user'></i>
-                  </span>
-                </div>
-              </div>
-              <div class='field'>
-                <p class='control'>
-                  <textarea class='textarea' placeholder="What's happening?" maxlength='140' id='twiddle'></textarea>
+        <div class='main-content'>
+          <div class='box' id='new-twiddle-card'>
+            <article class='media'>
+              <figure class='media-left'>
+                <p class='image is-64x64'>
+                  <img src='./assets/default.png'>
                 </p>
-              </div>
-              <nav class='level'>
-                <div class='level-right'>
-                  <div class='level-item'>
-                    <a class='button is-info' id='add-new-twiddle'>Twiddle</a>
+              </figure>
+              <div class='media-content'>
+                <div class='field'>
+                  <div class='control has-icons-left'>
+                    <input class='input' type='text' placeholder='Username' id='username'>
+                    <span class='icon is-small is-left'>
+                      <i class='fas fa-user'></i>
+                    </span>
                   </div>
                 </div>
-              </nav>
-            </div>
-          </article>
-        </div>
-        <div id='main'>
+                <div class='field'>
+                  <p class='control'>
+                    <textarea class='textarea' placeholder="What's happening?" maxlength='140' id='twiddle'></textarea>
+                  </p>
+                </div>
+                <nav class='level'>
+                  <div class='level-right'>
+                    <div class='level-item'>
+                      <a class='button is-info' id='add-new-twiddle'>Twiddle</a>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </article>
+          </div>
+          <div id='main'>
+          </div>
         </div>
       </div>
     </div>
