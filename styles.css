@@ -1,3 +1,8 @@
 .button span {
   color: #1DA1F2;
 }
+
+#add-new-twiddle,
+#new-twiddles {
+  background-color: #1DA1F2;
+}
