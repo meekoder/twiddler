@@ -1,5 +1,5 @@
-const addHandleClickProp = () => {
-  streams.home.map(obj => {
+const addHandleClickProp = (arrOfTwiddles) => {
+  arrOfTwiddles.map(obj => {
     obj.handleProfileClick = () => {
       const username = obj.user;
       const userTwiddles = streams.users[username];
@@ -12,12 +12,30 @@ const addHandleClickProp = () => {
 };
 
 const handleLoadNewTwiddles = () => {
-  addHandleClickProp();
   const newTwiddlesLength = streams.home.length - callCount; 
   const newTwiddlesArr = streams.home.slice(newTwiddlesLength);
   callCount = 0;
   $('#new-twiddles').remove();
   displayHomeFeed(newTwiddlesArr);
+};
+
+const handleNewTwiddle = () => {
+  const username = $('#username').val();
+  const twiddle = $('#twiddle').val();
+  const newTwiddle = {};
+  if (username.length < 1 || twiddle.length < 1) {
+    alert('Please fill out both fields before adding your Twiddle!');
+  } else {
+    newTwiddle.user = username;
+    newTwiddle.message = twiddle;
+    newTwiddle.created_at = new Date();
+    if (!streams.users[username]) {
+      streams.users[username] = [];
+    }
+    addTweet(newTwiddle);
+    displayHomeFeed([newTwiddle]);
+    $('#username, #twiddle').val(''); 
+  }
 };
 
 const formatDate = (dateObj) => {
@@ -42,7 +60,7 @@ const formatDate = (dateObj) => {
 };
 
 const displayHomeFeed = (arrOfTwiddles) => {
-  addHandleClickProp();
+  addHandleClickProp(arrOfTwiddles);
   arrOfTwiddles.forEach(twiddleObj => {
     const username = twiddleObj.user;
     const twiddle = twiddleObj.message;
@@ -91,12 +109,11 @@ const displayHomeFeed = (arrOfTwiddles) => {
 let callCount = 0;
 const originalAddTweet = addTweet;
 
-addTweet = function(...arguments) {
+addTweet = (...arguments) => {
   callCount += 1;
   if (callCount === 1) {
     $('#new-twiddle-card').after('<button class="button is-info is-rounded" id="new-twiddles" />');
   }
-
   newTweetTrigger(...arguments);
   return originalAddTweet(...arguments);
 }
@@ -106,33 +123,13 @@ const newTweetTrigger = () => {
     .click(handleLoadNewTwiddles);
 };
 
-$(document).ready(function() {
+$(document).ready(() => {
   displayHomeFeed(streams.home);
 
-  const handleNewTwiddle = () => {
-    const username = $('#username').val();
-    const twiddle = $('#twiddle').val();
-    const newTwiddle = {};
-    if (username.length < 1 || twiddle.length < 1) {
-      alert('Please fill out both fields before adding your Twiddle!');
-    } else {
-      newTwiddle.user = username;
-      newTwiddle.message = twiddle;
-      newTwiddle.created_at = new Date();
-      if (!streams.users[username]) {
-        streams.users[username] = [];
-      }
-      addTweet(newTwiddle);
-      displayHomeFeed([newTwiddle]);
-      $('#username, #twiddle').val(''); 
-    }
-  }
-
   $('#add-new-twiddle').click(handleNewTwiddle);
-
-  $('#twitter-icon, #home').click(function() {
+  $('#twitter-icon, #home').click(() => {
     callCount = 0;
     $('#new-twiddles').remove();
-    displayHomeFeed(streams.home)
+    displayHomeFeed(streams.home);
   });
 });
