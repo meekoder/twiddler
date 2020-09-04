@@ -41,10 +41,6 @@ const formatDate = (dateObj) => {
   return formattedDate;
 };
 
-// const imgError = () => {
-//   $('#profile-icon').attr('src', './assets/default.png');
-// };
-
 const displayHomeFeed = (arrOfTwiddles) => {
   addHandleClickProp();
   arrOfTwiddles.forEach(twiddleObj => {

@@ -23,3 +23,7 @@
 #search {
   margin: 10px 0;
 }
+
+#add-new-twiddle {
+  min-width: 120px;
+}
