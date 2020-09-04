@@ -6,3 +6,16 @@
 #new-twiddles {
   background-color: #1DA1F2;
 }
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#new-twiddles {
+ margin-bottom: 10px; 
+ max-width: 300px;
+ min-width: 300px;
+ align-self: center;
+}
