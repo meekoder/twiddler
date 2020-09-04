@@ -19,3 +19,7 @@
  min-width: 300px;
  align-self: center;
 }
+
+#search {
+  margin: 10px 0;
+}
