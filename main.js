@@ -107,22 +107,25 @@ const newTweetTrigger = () => {
 };
 
 $(document).ready(function() {
-  addHandleClickProp();
-  console.log(streams)
   displayHomeFeed(streams.home);
 
   const handleNewTwiddle = () => {
     const username = $('#username').val();
     const twiddle = $('#twiddle').val();
     const newTwiddle = {};
-    newTwiddle.user = username;
-    newTwiddle.message = twiddle;
-    newTwiddle.created_at = new Date();
-    if (!streams.users[username]) {
-      streams.users[username] = [];
+    if (username.length < 1 || twiddle.length < 1) {
+      alert('Please fill out both fields before adding your Twiddle!');
+    } else {
+      newTwiddle.user = username;
+      newTwiddle.message = twiddle;
+      newTwiddle.created_at = new Date();
+      if (!streams.users[username]) {
+        streams.users[username] = [];
+      }
+      addTweet(newTwiddle);
+      displayHomeFeed([newTwiddle]);
+      $('#username, #twiddle').val(''); 
     }
-    addTweet(newTwiddle);
-    displayHomeFeed([newTwiddle]);
   }
 
   $('#add-new-twiddle').click(handleNewTwiddle);
