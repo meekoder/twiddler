@@ -13,11 +13,12 @@
     <script src='dataGenerator.js'></script>
     <script src='main.js'></script>
   </head>
-  <body>
-    <nav class='navbar is-light' role='navigation' aria-label='main navigation'>
+  <body class='has-navbar-fixed-top'>
+    <nav class='navbar is-light is-fixed-top' role='navigation' aria-label='main navigation'>
       <div class='navbar-brand'>
         <a class='navbar-item' id='twitter-icon'>
           <img src='./assets/twitter-icon.ico'>
+          <p><strong>Twiddler</strong></p>
         </a>
 
         <a role='button' class='navbar-burger burger' aria-label='menu' aria-expanded='false'>
@@ -48,7 +49,7 @@
                   <i class='fab fa-twitter'></i>
                 </span>
                 <span>
-                  Tweet
+                  Twiddle
                 </span>
               </a>
               <a class='button is-link'>
@@ -83,19 +84,27 @@
           <article class='media'>
             <figure class='media-left'>
               <p class='image is-64x64'>
-                <img src='https://bulma.io/images/placeholders/128x128.png'>
+                <img src='./assets/default.png'>
               </p>
             </figure>
             <div class='media-content'>
               <div class='field'>
+                <div class='control has-icons-left'>
+                  <input class='input' type='text' placeholder='Username' id='username'>
+                  <span class='icon is-small is-left'>
+                    <i class='fas fa-user'></i>
+                  </span>
+                </div>
+              </div>
+              <div class='field'>
                 <p class='control'>
-                  <textarea class='textarea' placeholder="What's happening?"></textarea>
+                  <textarea class='textarea' placeholder="What's happening?" maxlength='140' id='twiddle'></textarea>
                 </p>
               </div>
               <nav class='level'>
                 <div class='level-right'>
                   <div class='level-item'>
-                    <a class='button is-info' id='twiddle'>Twiddle</a>
+                    <a class='button is-info' id='add-new-twiddle'>Twiddle</a>
                   </div>
                 </div>
               </nav>
