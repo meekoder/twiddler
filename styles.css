@@ -33,3 +33,7 @@
 #save-changes {
   display: none;
 }
+
+#user-pic {
+  cursor: pointer;
+}
