@@ -33,7 +33,7 @@
         </div>
         <div class='field' id='search'>
           <p class='control has-icons-right'>
-            <input class='input' type='search' placeholder='Search Twiddler'>
+            <input class='input' type='search' placeholder='Search Twiddler' id='search-term'>
             <span class='icon is-small is-right'>
               <i class='fas fa-search'></i>
             </span>
@@ -43,6 +43,7 @@
           <div class='navbar-item has-dropdown is-hoverable'>
             <a class='navbar-link'>More</a>
             <div class='navbar-dropdown'>
+              <a class='navbar-item' id='user-twiddles'>My Twiddles</a>
               <a class='navbar-item'>Likes</a>
               <hr class='navbar-divider'>
               <a class='navbar-item'>About</a>
@@ -68,7 +69,7 @@
             <article class='media'>
               <figure class='media-left'>
                 <p class='image is-64x64'>
-                  <img src='./assets/default.png'>
+                  <img src='./assets/default.png' id='user-pic'>
                 </p>
               </figure>
               <div class='media-content'>

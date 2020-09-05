@@ -36,6 +36,7 @@ const handleNewTwiddle = () => {
     }
     addTweet(newTwiddle);
     displayHomeFeed([newTwiddle]);
+    streams.currentUser = username;
     $('#twiddle').val(''); 
     $('#username').prop('disabled', true);
     $('#change-username').show()
@@ -47,7 +48,7 @@ const handleChangeUserName = () => {
   const $twiddle = $('#twiddle'); 
   const $username = $('#username');
   const $newTwiddleBtn = $('#add-new-twiddle');
-  const currentUserName = $username.val();
+  const currentUserName = streams.currentUser;
   $username.prop('disabled', false);
   $twiddle.prop('disabled', true);
   $newTwiddleBtn.prop('disabled', true);
@@ -60,6 +61,7 @@ const handleChangeUserName = () => {
         $twiddle.prop('disabled', false);
         $newTwiddleBtn.prop('disabled', false);
         streams.users[newUserName] = streams.users[currentUserName];
+        streams.currentUser = newUserName;
         streams.home.map(obj => {
           if (obj.user === currentUserName) {
             obj.user = newUserName;
@@ -159,9 +161,15 @@ const newTweetTrigger = () => {
 };
 
 $(document).ready(() => {
+  streams.currentUser = '';
+  console.log(streams)
   displayHomeFeed(streams.home);
-
   $('#add-new-twiddle').click(handleNewTwiddle);
+  $('#user-pic, #user-twiddles').click(() => {
+    $('#new-twiddles').remove();
+    $('#main').empty();
+    displayHomeFeed(streams.users[streams.currentUser]);
+  });
   $('#twitter-icon, #home').click(() => {
     callCount = 0;
     $('#new-twiddles').remove();
