@@ -111,13 +111,12 @@ const displayHomeFeed = (arrOfTwiddles) => {
     const $profilePic = $('<figure class="media-left" />');
     const $profileSize = $('<p class="image is-64x64" />');
     const $date = $('<div class="level-right" />');
-    const $interaction = $(`<nav class='level is-mobile'>
-          <div class='level-left'>
-            <a class='level-item'>
-              <span class='icon is-small'><i class='fas fa-heart'></i></span>
-            </a>
-          </div>
-        </nav>`);
+    const $interaction = $(`<nav class='level is-mobile' />`);
+    const $like = $(`<a class='level-left'><span class='icon is-small'><i class='fas fa-heart'></i></span></a>`);
+    $like.appendTo($interaction)
+      .click(() => {
+        streams.likes.push(twiddleObj);
+      });
     $date.text(`${dateCreated}`)
       .appendTo($interaction);
     $image.attr({
@@ -162,6 +161,7 @@ const newTweetTrigger = () => {
 
 $(document).ready(() => {
   streams.currentUser = '';
+  streams.likes = [];
   console.log(streams)
   displayHomeFeed(streams.home);
   $('#add-new-twiddle').click(handleNewTwiddle);
@@ -170,6 +170,11 @@ $(document).ready(() => {
     $('#main').empty();
     displayHomeFeed(streams.users[streams.currentUser]);
   });
+  $('#likes').click(() => {
+    $('#new-twiddles').remove();
+    $('#main').empty();
+    displayHomeFeed(streams.likes);
+  })
   $('#twitter-icon, #home').click(() => {
     callCount = 0;
     $('#new-twiddles').remove();
