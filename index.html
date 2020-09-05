@@ -40,25 +40,22 @@
           </p>
         </div>
         <div class='navbar-end'>
-          <div class='navbar-item'>
-            <div class='buttons'>
-              <a class='button'>
-                <span class='icon'>
-                  <i class='fab fa-twitter'></i>
-                </span>
-                <span>Twiddle</span>
-              </a>
-            </div>
-          </div>
           <div class='navbar-item has-dropdown is-hoverable'>
             <a class='navbar-link'>More</a>
             <div class='navbar-dropdown'>
-              <!-- <a class='navbar-item'> -->
-              <!--   Settings -->
-              <!-- </a> -->
               <a class='navbar-item'>Likes</a>
               <hr class='navbar-divider'>
               <a class='navbar-item'>About</a>
+            </div>
+          </div>
+          <div class='navbar-item'>
+            <div class='buttons'>
+              <a class='button' href='https://www.twitter.com' target='_blank'>
+                <span class='icon'>
+                  <i class='fab fa-twitter'></i>
+                </span>
+                <span>Real Twitter</span>
+              </a>
             </div>
           </div>
         </div>
@@ -88,9 +85,19 @@
                     <textarea class='textarea' placeholder="What's happening?" maxlength='140' id='twiddle'></textarea>
                   </p>
                 </div>
-                <div class='level-right'>
-                  <a class='button is-info' id='add-new-twiddle'>Twiddle</a>
-                </div>
+                <nav class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <a class="button is-light is-small" id='change-username'>Change Username</a>
+                      <a class="button is-success is-small" id='save-changes'>Save Changes</a>
+                    </div>
+                  </div>
+                  <div class="level-right">
+                    <div class="level-item">
+                      <button class='button' id='add-new-twiddle'>Twiddle</button>
+                    </div>
+                  </div>
+                </nav>
               </div>
             </article>
           </div>

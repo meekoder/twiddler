@@ -5,6 +5,7 @@
 #add-new-twiddle,
 #new-twiddles {
   background-color: #1DA1F2;
+  color: white;
 }
 
 .main-content {
@@ -26,4 +27,9 @@
 
 #add-new-twiddle {
   min-width: 120px;
+}
+
+#change-username,
+#save-changes {
+  display: none;
 }

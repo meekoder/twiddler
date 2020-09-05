@@ -1,3 +1,5 @@
+// Handlers
+
 const addHandleClickProp = (arrOfTwiddles) => {
   arrOfTwiddles.map(obj => {
     obj.handleProfileClick = () => {
@@ -20,12 +22,12 @@ const handleLoadNewTwiddles = () => {
 };
 
 const handleNewTwiddle = () => {
-  const username = $('#username').val();
-  const twiddle = $('#twiddle').val();
-  const newTwiddle = {};
   if (username.length < 1 || twiddle.length < 1) {
     alert('Please fill out both fields before adding your Twiddle!');
   } else {
+    const username = $('#username').val();
+    const twiddle = $('#twiddle').val();
+    const newTwiddle = {};
     newTwiddle.user = username;
     newTwiddle.message = twiddle;
     newTwiddle.created_at = new Date();
@@ -34,9 +36,42 @@ const handleNewTwiddle = () => {
     }
     addTweet(newTwiddle);
     displayHomeFeed([newTwiddle]);
-    $('#username, #twiddle').val(''); 
+    $('#twiddle').val(''); 
+    $('#username').prop('disabled', true);
+    $('#change-username').show()
+      .click(handleChangeUserName);
   }
 };
+
+const handleChangeUserName = () => {
+  const $twiddle = $('#twiddle'); 
+  const $username = $('#username');
+  const $newTwiddleBtn = $('#add-new-twiddle');
+  const currentUserName = $username.val();
+  $username.prop('disabled', false);
+  $twiddle.prop('disabled', true);
+  $newTwiddleBtn.prop('disabled', true);
+  $('#username').on('change keyup paste', () => {
+    $('#change-username').hide();
+    $('#save-changes').show()
+      .click(() => {
+        const newUserName = $username.val();
+        $username.prop('disabled', true);
+        $twiddle.prop('disabled', false);
+        $newTwiddleBtn.prop('disabled', false);
+        streams.users[newUserName] = streams.users[currentUserName];
+        streams.home.map(obj => {
+          if (obj.user === currentUserName) {
+            obj.user = newUserName;
+          }
+        });
+        $('#save-changes').hide();
+        $('#change-username').show();
+      });
+  });
+};
+
+// Helpers
 
 const formatDate = (dateObj) => {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -112,7 +147,7 @@ const originalAddTweet = addTweet;
 addTweet = (...arguments) => {
   callCount += 1;
   if (callCount === 1) {
-    $('#new-twiddle-card').after('<button class="button is-info is-rounded" id="new-twiddles" />');
+    $('#new-twiddle-card').after('<button class="button is-rounded" id="new-twiddles" />');
   }
   newTweetTrigger(...arguments);
   return originalAddTweet(...arguments);
