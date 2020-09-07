@@ -7,6 +7,7 @@ const addHandleClickProp = (arrOfTwiddles) => {
       const userTwiddles = streams.users[username];
       $('#new-twiddles').remove();
       $('#main').empty();
+      $('#new-twiddle-card').hide();
       displayHomeFeed(userTwiddles);
     }
     obj.handleLikeClick = () => {
@@ -191,7 +192,11 @@ $(document).ready(() => {
   $('#user-pic, #user-twiddles').click(() => {
     $('#new-twiddles').remove();
     $('#main').empty();
-    displayHomeFeed(streams.users[streams.currentUser]);
+    if (!streams.users[streams.currentUser] || streams.users[streams.currentUser].length < 1) {
+      alert('Your feed is empty! Make a new Twiddle to view it on your page!');
+    } else {
+      displayHomeFeed(streams.users[streams.currentUser]);
+    }
   });
   $('#likes').click(() => {
     $('#new-twiddles').remove();
@@ -200,6 +205,7 @@ $(document).ready(() => {
   })
   $('#twitter-icon, #home').click(() => {
     callCount = 0;
+    $('#new-twiddle-card').show();
     $('#new-twiddles').remove();
     displayHomeFeed(streams.home);
   });
