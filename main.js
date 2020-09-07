@@ -9,6 +9,14 @@ const addHandleClickProp = (arrOfTwiddles) => {
       $('#main').empty();
       displayHomeFeed(userTwiddles);
     }
+    obj.handleLikeClick = () => {
+      const indexOfTwiddle = streams.likes.indexOf(obj);
+      if (indexOfTwiddle > -1) {
+        streams.likes.splice(indexOfTwiddle, 1);
+      } else {
+        streams.likes.push(obj);
+      }
+    }
     return obj;
   });
 };
@@ -112,11 +120,26 @@ const displayHomeFeed = (arrOfTwiddles) => {
     const $profileSize = $('<p class="image is-64x64" />');
     const $date = $('<div class="level-right" />');
     const $interaction = $(`<nav class='level is-mobile' />`);
-    const $like = $(`<a class='level-left'><span class='icon is-small'><i class='fas fa-heart'></i></span></a>`);
-    $like.appendTo($interaction)
-      .click(() => {
-        streams.likes.push(twiddleObj);
+    const $like = $(`<a class='level-left' id='like-icon' />`);
+    const $likeIcon = $(`<span class='icon is-small' /span>`);
+    const $likeImg = $(`<i class='far fa-heart' />`);
+    if (streams.likes.includes(twiddleObj)) {
+      $likeImg.removeClass('far fa-heart').addClass('fas fa-heart');
+      $like.click(() => {
+        twiddleObj.handleLikeClick();
+        $likeIcon.toggle();
+        $like.toggleClass('far fa-heart');
+      })
+    } else {
+      $like.click(() => {
+        twiddleObj.handleLikeClick();
+        $likeIcon.toggle();
+        $like.toggleClass('fas fa-heart');
       });
+    }
+    $likeImg.appendTo($likeIcon);
+    $likeIcon.appendTo($like);
+    $like.appendTo($interaction)
     $date.text(`${dateCreated}`)
       .appendTo($interaction);
     $image.attr({
