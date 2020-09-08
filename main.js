@@ -105,6 +105,12 @@ const formatDate = (dateObj) => {
   return formattedDate;
 };
 
+const clearHomeFeed = () => {
+  $('#new-twiddles').remove();
+  $('#main').empty();
+  $('#new-twiddle-card').hide();
+};
+
 const displayHomeFeed = (arrOfTwiddles) => {
   addHandleClickProp(arrOfTwiddles);
   arrOfTwiddles.forEach(twiddleObj => {
@@ -186,22 +192,37 @@ const newTweetTrigger = () => {
 $(document).ready(() => {
   streams.currentUser = '';
   streams.likes = [];
-  console.log(streams)
   displayHomeFeed(streams.home);
   $('#add-new-twiddle').click(handleNewTwiddle);
   $('#user-pic, #user-twiddles').click(() => {
-    $('#new-twiddles').remove();
-    $('#main').empty();
     if (!streams.users[streams.currentUser] || streams.users[streams.currentUser].length < 1) {
       alert('Your feed is empty! Make a new Twiddle to view it on your page!');
     } else {
+      clearHomeFeed();
+      $('#new-twiddle-card').show();
       displayHomeFeed(streams.users[streams.currentUser]);
     }
   });
   $('#likes').click(() => {
-    $('#new-twiddles').remove();
-    $('#main').empty();
-    displayHomeFeed(streams.likes);
+    if (streams.likes.length < 1) {
+      alert('You haven\'t liked any Twiddles yet!');
+    } else {
+      clearHomeFeed();
+      displayHomeFeed(streams.likes);
+    }
+  });
+  $('#searchbox').keypress(() => {
+    const keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode === 13) {
+      const searchTerm = $('#searchbox').val();
+      if (streams.users[searchTerm]) {
+        clearHomeFeed();
+        displayHomeFeed(streams.users[searchTerm]);
+      } else {
+        alert('User not found!');
+      }
+      $('#searchbox').val('');
+    }
   })
   $('#twitter-icon, #home').click(() => {
     callCount = 0;
