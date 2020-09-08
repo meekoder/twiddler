@@ -121,6 +121,7 @@ const displayHomeFeed = (arrOfTwiddles) => {
     const $article = $('<article class="media" />');
     const $userMedia = $('<div class="media-content" />');
     const $tweet = $('<div class="content" />');
+    const $message = $('<p />');
     const $user = $('<p />');
     const $image = $('<img  id="profile-icon"/>');
     const $profilePic = $('<figure class="media-left" />');
@@ -158,8 +159,10 @@ const displayHomeFeed = (arrOfTwiddles) => {
       .click(twiddleObj.handleProfileClick);
     $user.click(twiddleObj.handleProfileClick);
     $profilePic.append($profileSize);
-    $tweet.append('<p />')
-      .text(`${twiddle}`)
+    $message.html(`${twiddle}`)
+      .css({'overflow-wrap': 'break-word',
+        'width': '500px'});
+    $tweet.append($message);
     $user.text(`@${username}`)
       .css({'font-weight': 'bold',
         'cursor': 'pointer'
