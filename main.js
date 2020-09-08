@@ -160,11 +160,14 @@ const displayHomeFeed = (arrOfTwiddles) => {
     $user.click(twiddleObj.handleProfileClick);
     $profilePic.append($profileSize);
     $message.html(`${twiddle}`)
-      .css({'overflow-wrap': 'break-word',
-        'width': '500px'});
+      .css({
+        'overflow-wrap': 'break-word',
+        'width': '550px'
+      });
     $tweet.append($message);
     $user.text(`@${username}`)
-      .css({'font-weight': 'bold',
+      .css({
+        'font-weight': 'bold',
         'cursor': 'pointer'
       })
       .prependTo($tweet);
